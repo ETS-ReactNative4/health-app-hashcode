@@ -5,11 +5,10 @@ import { Dimensions, Text, StyleSheet } from "react-native";
 const screenWidth = Dimensions.get("window").width;
 
 const data = {
-  labels: ['January', 'February', 'March', 'April', 'May', 'June'],
   datasets: [{
     data: [ 20, 45, 28, 80, 99, 43 ],
     color: (opacity = 1) => `rgba(134, 65, 244, ${opacity})`,
-    strokeWidth: 2 // optional
+    strokeWidth: 2
   }]
 }
 const chartConfig = {
@@ -28,7 +27,7 @@ const LineGraph = ({lineStyles, textContent}) => {
       <LineChart
         style={lineStyles}
         data={data}
-        width={screenWidth - screenWidth /10}
+        width={screenWidth - 30}
         height={220}
         chartConfig={chartConfig}
       />
@@ -39,8 +38,11 @@ const LineGraph = ({lineStyles, textContent}) => {
 
 const styles = StyleSheet.create({
   textContent: {
-    fontSize: 16,
-    fontWeight: "600"
+    fontSize: 24,
+    fontWeight: "600",
+    top: -100,
+    marginLeft: 100,
+    color: 'rgba(0,0,0,0.5)'
   }
 });
 

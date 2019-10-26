@@ -3,7 +3,6 @@ import { Text, View, StyleSheet, TouchableOpacity, Image, ScrollView, FlatList }
 import { black } from 'ansi-colors';
 import ProgressChart from '../components/ProgressChart';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import StackedArea from '../components/StackedAreaChart';
 import LineGraph from '../components/LineGraph';
 
 const HomeScreen = ({navigation}) => {
@@ -18,7 +17,7 @@ const HomeScreen = ({navigation}) => {
       <View style={styles.startMonitoringView}>
         <TouchableOpacity 
           style={styles.startMonitoringButton}
-          onPress={() => navigation.navigate('Monitoring-Main')}
+          onPress={() => navigation.navigate('MonitorMain')}
         >
           <Text style={{color: 'white'}}>Start Monitoring</Text>
         </TouchableOpacity>
