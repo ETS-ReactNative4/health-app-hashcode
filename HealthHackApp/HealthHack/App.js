@@ -9,7 +9,7 @@ const navigator = createStackNavigator({
   MonitorMain: MonitorMainScreen
 },
 {
-  initialRouteName: 'MonitorMain',
+  initialRouteName: 'Home',
   navigationOptions: ({navigation}) => ({
       header: <AppBar title={navigation.getParam('appBar', {title: ''}).title}/>
   }),

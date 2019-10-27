@@ -5,18 +5,47 @@ import LineGraph from '../components/LineGraph';
 import { FlatList } from 'react-native-gesture-handler';
 import Map from '../components/Map';
 import Call from '../components/Call';
+import useInterval from '../hooks/UseInterval'
 
 const MonitorMainScreen = ({navigation}) => {
+  const emg_json = require('../../assets/csvjson.json');
+  const emg_json_array = emg_json.map(x=>x.emg);
+  const ecg_json = require('../../assets/ecg.json');
+  const ecg_json_array = ecg_json.map(x=>x.ecg);
+  const [emg, setEmg] = useState([emg_json_array[0]]);
+  const [ecg, setEcg] = useState([ecg_json_array[0]]);
+  const [count, setCount] = useState(1);
+
+  useInterval(()=>{
+    // if(isNan(emg_json_array[count])){
+    //   return;
+    // }
+    if(emg.length==20){
+      setEmg([...emg.slice(1), emg_json_array[count]]);
+      setEcg([...ecg.slice(1), ecg_json_array[count]]);
+    }else{
+      setEmg([...emg, emg_json_array[count]]);
+      setEcg([...ecg, ecg_json_array[count]]);
+    }
+    setCount(count+1);
+  }, 2000)
+  
+  // setEmg(emg.slice(0, 50).map(x=>x.emg));
+
+  // json.forEach((item)=>{
+  //   setEmg([...emg, item]);
+  // })
+  
   const  [smallValues, setSmallValues] = useState({
-    temp: 26,
+    temp: 37.1,
     bac: 0.002,
-    pulse: 58
+    pulse: 59
   });
 
   const  [locationValues, setLocationValues] = useState({
-    temp: 26,
-    pressure: 1105,
-    alt: 1002,
+    temp: 25.70,
+    pressure: 91991,
+    alt: 806.74,
     gps: {
       latitude: 12.93539,
       longitude: 77.534851,
@@ -38,18 +67,20 @@ const MonitorMainScreen = ({navigation}) => {
     require('../../assets/thermal-images/8.png'),
     require('../../assets/thermal-images/9.png'),
   ];
-  // console.log(thermalImages);
+  
   return (
     <ScrollView style={{flex: 1}}>
       <View style={styles.section}>
         <Text style={styles.heading}>Patient</Text>
         <LineGraph 
+          data={emg}
           lineStyles={styles.lineGraph} 
-          textContent={"ECG Graph"}
+          textContent={"EMG Graph"}
         />
         <LineGraph 
+          data={ecg}
           lineStyles={styles.lineGraph} 
-          textContent={"EKG Graph"}
+          textContent={"ECG Graph"}
         />
         <View>
           <View style={{...styles.boxes, backgroundColor: '#F5F5F5'}}>
@@ -62,14 +93,14 @@ const MonitorMainScreen = ({navigation}) => {
           <View style={{...styles.boxes, backgroundColor: '#F5F5F5'}}>
             <Text style={styles.boxesChild} >Blood Alcohol Conc.</Text>
             <Text style={{...styles.boxesChild, left: 60}} >
-              {smallValues.temp}
+              {smallValues.bac}
               <MaterialCommunityIcons name="percent" /><Text style={{fontSize: 14}}>vol</Text>
             </Text>
           </View>
           <View style={{...styles.boxes, backgroundColor: '#F5F5F5'}}>
             <Text style={styles.boxesChild} >Pulse Rate</Text>
             <Text style={{...styles.boxesChild, left: 60}} >
-              {smallValues.temp}<Text style={{fontSize: 14}}>/min</Text>
+              {smallValues.pulse}<Text style={{fontSize: 14}}>/min</Text>
             </Text>
           </View>
         </View>
@@ -108,7 +139,7 @@ const MonitorMainScreen = ({navigation}) => {
           <Text style={styles.boxesChild} >Pressure</Text>
           <Text style={{...styles.boxesChild, left: 60}} >
             {locationValues.pressure}
-            <Text style={{fontSize: 14}}>mb</Text>
+            <Text style={{fontSize: 14}}>Pa</Text>
           </Text>
         </View>
         <View style={{...styles.boxes, backgroundColor: '#F5F5F5'}}>

@@ -48,8 +48,8 @@ const HomeScreen = ({navigation}) => {
           </View>
           <View style={styles.bodyBigValuesView}>
             <View style={styles.bodyBigValuesGraph}>
+              <LineGraph lineStyles={styles.lineGraph} textContent={"EMG Graph"} />
               <LineGraph lineStyles={styles.lineGraph} textContent={"ECG Graph"} />
-              <LineGraph lineStyles={styles.lineGraph} textContent={"EKG Graph"} />
             </View>
           </View>
         </ScrollView>

@@ -4,7 +4,7 @@ import { Line } from 'react-native-svg';
 import { Dimensions, Text, StyleSheet } from "react-native";
 const screenWidth = Dimensions.get("window").width;
 
-const data = {
+const data_bak = {
   datasets: [{
     data: [ 20, 45, 28, 80, 99, 43 ],
     color: (opacity = 1) => `rgba(134, 65, 244, ${opacity})`,
@@ -20,13 +20,18 @@ const chartConfig = {
   strokeWidth: 3, 
   barPercentage:0.8
 }
-const LineGraph = ({lineStyles, textContent}) => {
-  
+const LineGraph = ({lineStyles, textContent, data}) => {
+  const final_data = data? {datasets: [{
+    data,
+    color: (opacity = 1) => `rgba(134, 65, 244, ${opacity})`,
+    strokeWidth: 2
+  }]} : data_bak;
+  // console.log(final_data);
   return (
     <>
       <LineChart
         style={lineStyles}
-        data={data}
+        data={final_data}
         width={screenWidth - 30}
         height={220}
         chartConfig={chartConfig}
