@@ -7,6 +7,7 @@ Moreover, with the advent of Motorcycle ambulances to deal with traffic, this ha
 
 We built such a system and a companion app to enable quick and easy diagnostics anytime, anywhere.
 ```
+### Current Mobile Application screen recording is [here](https://drive.google.com/open?id=16PlDe_pkNudPTPNehzPI4a-LhLSY39hV)
 
 ## Refer to circuit diagram for schematics
 
