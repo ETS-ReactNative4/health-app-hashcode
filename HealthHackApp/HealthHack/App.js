@@ -6,7 +6,7 @@ import MonitorMainScreen from './src/screens/MonitorMainScreen';
 
 const navigator = createStackNavigator({
   Home: HomeScreen,
-  MonitorMain: MonitorMainScreen
+  MonitorMain: MonitorMainScreen,
 },
 {
   initialRouteName: 'Home',

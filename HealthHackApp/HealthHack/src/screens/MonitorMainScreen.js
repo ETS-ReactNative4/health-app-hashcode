@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Text, View, StyleSheet, Image, ScrollView} from 'react-native';
+import {Text, View, StyleSheet, Image, ScrollView, Button} from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import LineGraph from '../components/LineGraph';
 import { FlatList } from 'react-native-gesture-handler';
@@ -70,6 +70,10 @@ const MonitorMainScreen = ({navigation}) => {
   
   return (
     <ScrollView style={{flex: 1}}>
+      {/* <Button 
+        title="Goto PDF Page"
+        onPress={()=>navigation.navigate("Report")}
+      /> */}
       <View style={styles.section}>
         <Text style={styles.heading}>Patient</Text>
         <LineGraph 
